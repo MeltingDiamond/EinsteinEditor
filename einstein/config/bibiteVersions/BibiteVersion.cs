@@ -34,6 +34,7 @@ namespace Einstein.config.bibiteVersions
         public static readonly BibiteVersion V0_5_Strafe_v1 = BibiteVersion0_5_Strafe_v1.INSTANCE;
         public static readonly BibiteVersion V0_5_DietStrengthDefence_v1 = BibiteVersion0_5_DietStrengthDefence_v1.INSTANCE;
         public static readonly BibiteVersion V0_4 = BibiteVersion0_4.INSTANCE;
+        public static readonly BibiteVersion V0_3 = BibiteVersion0_3.INSTANCE;
 
         // What the version is when you start the editor
         public static readonly BibiteVersion DEFAULT_VERSION = V0_6_2; // Must be listed after the above variables
@@ -52,7 +53,8 @@ namespace Einstein.config.bibiteVersions
                 V0_5_Strafe_v1,
                 V0_5_DietStrengthDefence_v1,
                 V0_5,
-                V0_4
+                V0_4,
+                V0_3
             };
 
         #endregion Version Instances (Static)

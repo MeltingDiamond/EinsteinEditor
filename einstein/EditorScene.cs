@@ -398,7 +398,7 @@ namespace Einstein
         {
             if (!isInit) { throw new InvalidOperationException(this + " is not inited"); }
             // read file
-            string filepath = IO.POPUPS.PromptForFile(getSavePath(), "Bibite Files|*.bb8",
+            string filepath = IO.POPUPS.PromptForFile(getSavePath(), "Bibite Files|*.bb8;*.json",
                 "Save to Bibite", "");
             if (filepath == "" || filepath == null)
             {
@@ -525,7 +525,7 @@ namespace Einstein
             }
 
             // read the file
-            string filepath = IO.POPUPS.PromptForFile(getLoadPath(), "Bibite Files|*.bb8",
+            string filepath = IO.POPUPS.PromptForFile(getLoadPath(), "Bibite Files|*.bb8;*json",
                 "Load from Bibite", "");
             if (filepath == "") { return; }
             if (!File.Exists(filepath))
