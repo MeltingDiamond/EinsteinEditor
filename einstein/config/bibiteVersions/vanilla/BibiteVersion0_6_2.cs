@@ -8,19 +8,19 @@ using static Einstein.model.json.JsonNeuron;
 
 namespace Einstein.config.bibiteVersions.vanilla
 {
-    public class BibiteVersion0_6_1 : BibiteVanillaVersion
+    public class BibiteVersion0_6_2 : BibiteVanillaVersion
     {
-        internal static readonly BibiteVersion0_6_1 INSTANCE = new BibiteVersion0_6_1();
+        internal static readonly BibiteVersion0_6_2 INSTANCE = new BibiteVersion0_6_2();
 
-        private BibiteVersion0_6_1(): base(610)
+        private BibiteVersion0_6_2(): base(611)
         {
-            VERSION_NAME = "0.6.1";
+            VERSION_NAME = "0.6.2";
 
             INPUT_NODES_INDEX_MIN = 0;
-            INPUT_NODES_INDEX_MAX = 31;
-            OUTPUT_NODES_INDEX_MIN = 32;
-            OUTPUT_NODES_INDEX_MAX = 46;
-            HIDDEN_NODES_INDEX_MIN = 47;
+            INPUT_NODES_INDEX_MAX = 32;
+            OUTPUT_NODES_INDEX_MIN = 33;
+            OUTPUT_NODES_INDEX_MAX = 47;
+            HIDDEN_NODES_INDEX_MIN = 48;
             HIDDEN_NODES_INDEX_MAX = int.MaxValue;
 
             DESCRIPTIONS = new string[] {
@@ -30,6 +30,7 @@ namespace Einstein.config.bibiteVersions.vanilla
                 "LifeRatio",
                 "Fullness",
                 "Speed",
+                "RotationSpeed",
                 "IsGrabbing",
                 "AttackedDamage",
                 "EggStored",
@@ -116,8 +117,8 @@ namespace Einstein.config.bibiteVersions.vanilla
 
         protected override bool IsMatchForVersionName(string bibitesVersionName)
         {
-            return bibitesVersionName.Equals("0.6.1")
-                    || bibitesVersionName.Equals("0.6.1.1");
+            return bibitesVersionName.Equals("0.6.2")
+                    || bibitesVersionName.Equals("0.6.2.1");
         }
 
         #endregion Version Name Matching
