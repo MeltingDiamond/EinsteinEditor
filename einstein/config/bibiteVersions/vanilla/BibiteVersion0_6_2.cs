@@ -12,7 +12,7 @@ namespace Einstein.config.bibiteVersions.vanilla
     {
         internal static readonly BibiteVersion0_6_2 INSTANCE = new BibiteVersion0_6_2();
 
-        private BibiteVersion0_6_2(): base(611)
+        private BibiteVersion0_6_2(): base(610)
         {
             VERSION_NAME = "0.6.2";
 
@@ -118,7 +118,9 @@ namespace Einstein.config.bibiteVersions.vanilla
         protected override bool IsMatchForVersionName(string bibitesVersionName)
         {
             return bibitesVersionName.Equals("0.6.2")
-                    || bibitesVersionName.Equals("0.6.2.1");
+                    || bibitesVersionName.Equals("0.6.2.1")
+                    || bibitesVersionName.Equals("0.6.3")
+                    || bibitesVersionName.Equals("0.6.3.1");
         }
 
         #endregion Version Name Matching
