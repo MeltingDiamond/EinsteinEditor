@@ -11,68 +11,67 @@ using static Einstein.ui.editarea.NeuronValueCalculator;
 
 namespace Einstein.config.bibiteVersions.vanilla
 {
-    public class BibiteVersion0_3 : BibiteVanillaVersion
+    public class BibiteVersion1_3a4 : BibiteVanillaVersion
     {
-        internal static readonly BibiteVersion0_3 INSTANCE = new BibiteVersion0_3();
+        internal static readonly BibiteVersion1_3a4 INSTANCE = new BibiteVersion1_3a4();
 
-        private BibiteVersion0_3(): base(300)
+        private BibiteVersion1_3a4(): base(100)
         {
-            VERSION_NAME = "0.3";
+            VERSION_NAME = "1_3a4";
 
             INPUT_NODES_INDEX_MIN = 0;
-            INPUT_NODES_INDEX_MAX = 28;
-            OUTPUT_NODES_INDEX_MIN = 29;
+            INPUT_NODES_INDEX_MAX = 27;
+            OUTPUT_NODES_INDEX_MIN = 28;
             OUTPUT_NODES_INDEX_MAX = 43;
             HIDDEN_NODES_INDEX_MIN = 44;
             HIDDEN_NODES_INDEX_MAX = int.MaxValue;
 
             DESCRIPTIONS = new string[] {
                 // ----- Inputs -----
-                "Constant",
-                "EnergyRatio",
-                "Maturity",
-                "LifeRatio",
-                "Speed",
-                "IsGrabbingObjects",
-                "AttackedDamage",
-                "BibiteConcentrationWeight",
-                "BibiteConcentrationAngle",
-                "NVisibleBibites",
-                "PelletConcentrationWeight",
-                "PelletConcentrationAngle",
-                "NVisiblePellets",
-                "MeatConcentrationWeight",
-                "MeatConcentrationAngle",
-                "NVisibleMeat",
-                "ClosestBibiteR",
-                "ClosestBibiteG",
-                "ClosestBibiteB",
-                "Tic",
-                "Minute",
-                "TimeAlive",
-                "PheroSense1",
-                "PheroSense2",
-                "PheroSense3",
-                "Phero1Angle",
-                "Phero2Angle",
-                "Phero3Angle",
-                "InfectionRate",
+                "Constant (Input)",
+                "EnergyRatio (Input)",
+                "Maturity (Input)",
+                "LifeRatio (Input)",
+                "Speed (Input)",
+                "AttackedDamage (Input)",
+                "BibiteConcentrationWeight (Input)",
+                "BibiteConcentrationAngle (Input)",
+                "NVisibleBibites (Input)",
+                "PelletConcentrationWeight (Input)",
+                "PelletConcentrationAngle (Input)",
+                "NVisiblePellets (Input)",
+                "MeatConcentrationWeight (Input)",
+                "MeatConcentrationAngle (Input)",
+                "NVisibleMeat (Input)",
+                "ClosestBibiteR (Input)",
+                "ClosestBibiteG (Input)",
+                "ClosestBibiteB (Input)",
+                "Tic (Input)",
+                "Minute (Input)",
+                "TimeAlive (Input)",
+                "PheroSense1 (Input)",
+                "PheroSense2 (Input)",
+                "PheroSense3 (Input)",
+                "Phero1Angle (Input)",
+                "Phero2Angle (Input)",
+                "Phero3Angle (Input)",
+                "InfectionRate (Input)",
                 // ----- Outputs -----
-                "Accelerate",
-                "Rotate",
-                "Herding",
-                "Want2Lay",
-                "Want2Eat",
-                "Want2Sex",
-                "Grab",
-                "ClkReset",
-                "PhereOut1",
-                "PhereOut2",
-                "PhereOut3",
-                "Want2Grow",
-                "Want2Heal",
-                "Want2Attack",
-                "ImmuneSystem",
+                "Accelerate (TanH)",
+                "Rotate (TanH)",
+                "Herding (TanH)",
+                "Want2Lay (Sigmoid)",
+                "Want2Eat (Sigmoid)",
+                "Want2Sex (Sigmoid)",
+                "Grab (Sigmoid)",
+                "ClkReset (Sigmoid)",
+                "PhereOut1 (ReLU)",
+                "PhereOut2 (ReLU)",
+                "PhereOut3 (ReLU)",
+                "Want2Grow (Sigmoid)",
+                "Want2Heal (Sigmoid)",
+                "Want2Attack (Sigmoid)",
+                "ImmuneSystem (TanH)",
             };
 
             outputTypes = new NeuronType[]
@@ -83,7 +82,7 @@ namespace Einstein.config.bibiteVersions.vanilla
                 NeuronType.Sigmoid,
                 NeuronType.Sigmoid,
                 NeuronType.Sigmoid,
-                NeuronType.TanH,
+                NeuronType.Sigmoid,
                 NeuronType.Sigmoid,
                 NeuronType.ReLu,
                 NeuronType.ReLu,
@@ -107,6 +106,18 @@ namespace Einstein.config.bibiteVersions.vanilla
                 NeuronType.Differential,
             };
         }
+        #region Version Name Matching
+
+        protected override bool IsMatchForVersionName(string bibitesVersionName)
+        {
+            if (bibitesVersionName.Equals("1.3a4"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        #endregion Version Name Matching
 
         #region Brain Calculations
 

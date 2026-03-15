@@ -49,6 +49,7 @@ namespace Einstein.model.json
         // unused for now, but they're in the json so keep track of them just in case
         private string isReady;
         private string parent;
+        private int indexCounter;
         private Dictionary<int, int> oldNewNeuronIndicesMap;
 
         public JsonBrain(BibiteVersion bibiteVersion) : base(bibiteVersion)
@@ -78,11 +79,13 @@ namespace Einstein.model.json
             isReady = "true";
             parent = "true";
 
+            indexCounter = 0;
             // parse neurons
             parser.parseArray((neuronStartIndex) =>
             {
-                JsonNeuron.RawJsonFields fields = new JsonNeuron.RawJsonFields(json, neuronStartIndex, bibiteVersion);
+                JsonNeuron.RawJsonFields fields = new JsonNeuron.RawJsonFields(json, neuronStartIndex, bibiteVersion, indexCounter);
                 Add(new JsonNeuron(fields, bibiteVersion));
+                indexCounter++;
             });
             // parse synapses
             parser.parseArray((synapseStartIndex) =>

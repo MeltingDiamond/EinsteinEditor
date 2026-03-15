@@ -131,11 +131,19 @@ namespace Einstein.model.json
                     this, jsonNeuron.DiagramX, jsonNeuron.DiagramY);
             }
 
-            public RawJsonFields(string json, int startIndex, BibiteVersion bibiteVersion)
+            public RawJsonFields(string json, int startIndex, BibiteVersion bibiteVersion, int indexCounter)
             {
                 JsonParser parser = new JsonParser(json, startIndex);
                 parser.startParsingNextLeafObj();
-                this.typeIndex = parser.getNextValueInt("Type");
+                if (bibiteVersion == BibiteVersion.V1_3a4)
+                {
+                    this.typeIndex = parser.getNextValueInt("type");
+                }
+                else
+                {
+                    this.typeIndex = parser.getNextValueInt("Type");
+                }
+
                 if (bibiteVersion.HasBiases())
                 {
                     this.bias = parser.getNextValueFloat("baseActivation");
@@ -144,13 +152,30 @@ namespace Einstein.model.json
                 {
                     this.bias = 0f;
                 }
-                this.typeName = parser.getNextValue("TypeName");
-                this.index = parser.getNextValueInt("Index");
-                this.inov = parser.getNextValueInt("Inov");
-                this.rawDescription = parser.getNextValue("Desc");
-                this.value = parser.getNextValueFloat("Value");
-                this.lastInput = parser.getNextValueFloat("LastInput");
-                this.lastOutput = parser.getNextValueFloat("LastOutput");
+
+                if (bibiteVersion == BibiteVersion.V1_3a4)
+                {
+                    this.rawDescription = parser.getNextValue("desc");
+                    String[] splitDesc = this.rawDescription.Split(new string[] { " (" }, StringSplitOptions.None);
+                    this.typeName = splitDesc[1].Remove(splitDesc[1].Length - 1);
+                    this.rawDescription = splitDesc[0];
+                    this.index = indexCounter;
+                    //this.inov = parser.getNextValueInt("inov");
+                    this.inov = 0;
+                    this.value = parser.getNextValueFloat("value");
+                    this.lastInput = parser.getNextValueFloat("lastInput");
+                    this.lastOutput = parser.getNextValueFloat("lastOutput");
+                }
+                else
+                {
+                    this.typeName = parser.getNextValue("TypeName");
+                    this.index = parser.getNextValueInt("Index");
+                    this.inov = parser.getNextValueInt("Inov");
+                    this.rawDescription = parser.getNextValue("Desc");
+                    this.value = parser.getNextValueFloat("Value");
+                    this.lastInput = parser.getNextValueFloat("LastInput");
+                    this.lastOutput = parser.getNextValueFloat("LastOutput");
+                }
                 parser.endParsingLeafObj();
             }
 
